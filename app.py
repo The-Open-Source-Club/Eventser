@@ -8,9 +8,17 @@ from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
+import os
+
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-app.config['SECRET_KEY'] = 'Thisissupposedtobesecret!'
+
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'Thisissupposedtobesecret!'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'test.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -254,19 +262,6 @@ def signup():
     return render_template('signup.html', form=form)
 
 
-@app.route('/search', methods=['GET', 'POST'])
-def searching():
-    if request.method == 'POST':
-        squery = request.form['ing']
-        sanswer = Todo.query.filter_by(name=squery).first()
-        
-        return render_template('result.html', sanswer=sanswer)
-    else:
-        return render_template('search.html')
-
-
-
-
 @app.route('/logout')
 @login_required
 def logout():
@@ -274,7 +269,7 @@ def logout():
     return redirect('/')
 
 
-
+from routes import *
 
 
 if __name__ == "__main__":
