@@ -1,50 +1,15 @@
-from flask import Flask, render_template, url_for, request, redirect, flash
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template, url_for, request, redirect, flash
 import json
-from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm 
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_login import UserMixin, login_user, login_required, logout_user, current_user
 
-import os
-
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-app = Flask(__name__)
-
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'Thisissupposedtobesecret!'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'test.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-bootstrap = Bootstrap(app)
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
-
-db = SQLAlchemy(app)
-
-class Todo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    desc = db.Column(db.String(800), nullable=False)
-    date = db.Column(db.String(15), nullable=False)
+from app import app, db, login_manager
+from app.models import Todo, User
 
 
-    def __repr__(self):
-        return '<Task %r>' % self.id
-
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), unique=True)
-    email = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(80))
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired()])
@@ -269,11 +234,8 @@ def logout():
     return redirect('/')
 
 
-from routes import *
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
 
 
 

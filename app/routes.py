@@ -1,7 +1,7 @@
-from app import app
-from app import Todo
-
 from flask import request, render_template
+
+from app import app
+from app.models import Todo
 
 
 @app.route('/search', methods=['GET', 'POST'])
