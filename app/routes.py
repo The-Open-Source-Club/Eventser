@@ -46,7 +46,7 @@ def index():
         d = {'event': [{'names': a, 'descs': t, 'dates': ds} for a, t, ds in zip(names, descs, dates)]}
         car = 5
         peter = Todo.query.filter_by(name='Kaalrarv').first()
-        return render_template('Current.html', names=names, descs=descs, dates=dates, peter=peter) # ,events=events, rows=rows)
+        return render_template('current.html', names=names, descs=descs, dates=dates, peter=peter) # ,events=events, rows=rows)
 
 
 @app.route('/past', methods=['POST', 'GET'])
@@ -60,7 +60,7 @@ def past():
         names.append(event.name)
         descs.append(event.desc)
         dates.append(event.date)
-    return render_template('Past.html', names=names, descs=descs, dates=dates) # ,events=events, rows=rows)
+    return render_template('past.html', names=names, descs=descs, dates=dates) # ,events=events, rows=rows)
 
 
 @app.route('/upcoming', methods=['POST', 'GET'])
@@ -74,7 +74,7 @@ def upcoming():
             names.append(event.name)
             descs.append(event.desc)
             dates.append(event.date)
-        return render_template('Upcoming.html', names=names, descs=descs, dates=dates) # ,events=events, rows=rows)
+        return render_template('upcoming.html', names=names, descs=descs, dates=dates) # ,events=events, rows=rows)
 
 
 @app.route('/delete/<int:id>')
@@ -117,7 +117,6 @@ def admin():
             db.session.commit()
             return redirect('/')
         except:
-            raise
             return 'there was an error'
     else:
         events = Todo.query.all()
