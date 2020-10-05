@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import app, db
 from app.models import Todo, User
-from app.old_app import *
+from app.forms import LoginForm, RegisterForm
 
 import json
 
