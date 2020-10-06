@@ -10,109 +10,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.csshttps://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css">
     
-    <style>
-       .Carousel{
-    display:flex;
-    width: 100%;
-}
-.But{
-    width: 100px;
-    height: 100px;
-}
-
-
-#countdown{
-    display: flex;
-    align-items: flex-start;
-}
-.Carousel::-webkit-scrollbar {
-    display: none;
-}
-  
-.Carousel{
-    -ms-overflow-style: none;
-}
-
-
-.card-img-top {
-    width: 100%;
-    height: 10vw;
-    object-fit: cover;
-}
-
-@media only screen and (max-width: 768px) {
-    .card-img-top {
-        width: 100%;
-        height: 50vw;
-        object-fit: cover;
-    }
-}
-.card {
-    width: 300px;
-    height: 430px;
-    padding: 10px;
-    margin: 60px;
-
-}
-
-.bg-dark{
-    background-color: #05386B;
-}
-.card:hover{
-        width: 330px;
-        height: 440px;
-        background-color: orange;
-        box-shadow: 10px 10px 5px grey;
-
-}
-
-body{
-    padding:50px 0px 0px 0px;
-        background-color: #5cdb95;
-}
-
-.navbar-dark {
-    color: #05386B;
-}
-
-.row-header {
-    margin: 0px auto;
-    padding: 0px auto;
-}
-
-.row-content {
-    padding: 50px 0px 50px 0px;
-    border-bottom: 1px ridge;
-    min-height: 400px;
-}
-.footer {
-    display: flex;
-    align-items: flex-start;
-}
-
-.jumbotron {
-    padding: 70px 30px 70px 30px;
-    margin: 0px;
-    background: #9575CD;
-    color: floralwhite;
-}
-
-.address {
-    font-size: 80%;
-    margin: 0px;
-    color: #0f0f0f;
-}
-.navbar-dark{
-    background-color: #563d7c
-}
-
-
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome_free/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
-<body>  
+<body>
     <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
         <div class="container">
             <button class="navbar-toggler d-block d-sm-block d-md-none" type="button" data-toggle="collapse" data-target="#Navbar">
@@ -125,8 +28,7 @@ body{
                     <li class="nav-item "><a class="nav-link" href="./"><span class="fa fa-info fa-lg"></span> Current</a></li>
                     <li class="nav-item active"><a class="nav-link" href="./upcoming"><span class="fa fa-list fa-lg"></span> Upcoming</a></li>
                     <li style="nav-item" class="nav-item"><a class="nav-link" href="./admin"><span class="fa fa-address-card fa-lg"></span> Admin</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./search"><span classfa fa-address-card fa-lg"></span> Search</a></li>
-
+                    <li class="nav-item"><a class="nav-link" href="./search"><span class="fa fa-search fa-lg"></span> Search</a></li>
                 </ul>
             </div>
         </div>
@@ -134,12 +36,9 @@ body{
     <div class="container">
         <div class="row">
             <div class="col" id="wrapper">
-                <img src=""
             </div>
         </div>
-        
     </div>
-   
 </body>
 </html>
 
@@ -148,8 +47,6 @@ body{
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
-  
-    
 
     card=card+modal;
     var klass='<div class="card mx-auto">';
