@@ -137,11 +137,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user:
-            if check_password_hash(user.password,form.password.data):
-                login_user(user,remember=form.remember.data)
-                return redirect(url_for('admin'))
-            return '<h1>Invalid username or password</h1>'
+        if user and user.check_password(form.password.data):
+            login_user(user,remember=form.remember.data)
+            return redirect(url_for('admin'))
+        flash('Invalid username or password', 'danger')
     return render_template('login_page.html', form=form)
 
 
@@ -154,6 +153,7 @@ def signup():
             email=form.email.data)
         new_user.set_password(form.password.data)
         new_user.save_to_db()
+        flash(f'User {new_user.username} successfully created', 'info')
         return redirect('/login')
     return render_template('signup.html', form=form)
 

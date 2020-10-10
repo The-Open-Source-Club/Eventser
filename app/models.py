@@ -36,7 +36,7 @@ class User(UserMixin, db.Model):
         self.password = generate_password_hash(password, method='sha256')
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password, password)
 
     def save_to_db(self):
         db.session.add(self)
