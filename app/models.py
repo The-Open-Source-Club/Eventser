@@ -1,5 +1,9 @@
+from datetime import datetime
+
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import db, login_manager
+
 
 
 @login_manager.user_loader
@@ -22,7 +26,19 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
+    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime())
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return f'<User: {self.id}>'
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password, method='sha256')
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
 
