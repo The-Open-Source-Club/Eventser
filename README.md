@@ -1,10 +1,10 @@
-## Team 43 - Events Info Page
+## Eventser
 
 
 ### Project Overview
 ----------------------------------
 In a popular college like ours :P , multiple Events are organised in the campus every week. However, due to a lack of common medium, people often miss out on the important of details such as date of event, venue etc.
-To solve this problem, we have built a Web App on which everyone can easily find out about the various Events being held in the college.
+To solve this problem, we have built Eventser, a Web App on which everyone can easily find out about the various Events being held in the college.
 
 
 ### Solution Description
